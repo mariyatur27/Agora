@@ -21,6 +21,10 @@ app.get('/', (req, res) => {
     res.sendFile('index.html', {root: __dirname})
 })
 
+app.get('/result', (req, res) => {
+    res.sendFile('result.html', {root: __dirname})
+})
+
 app.post('/analyse', async(req, res) => {
     try {
 
@@ -87,6 +91,61 @@ app.post('/data', (req, res) => {
     })
 })
 
+
+app.post('/auth', (req, res) => {
+    try {
+        var url = process.env.REACT_APP_AUTHORIZE_URL.concat('?client_id=').concat(process.env.REACT_APP_CLIENT_ID).concat('&redirect_uri=').concat(process.env.REACT_APP_REDIRECT_URL).concat('&response_type=token&show_dialog=true');
+        console.log(url);
+        res.json(url)
+    }catch(err){
+        console.log(err)
+    }
+})
+
+app.post('/find', async(req, res) => {
+
+    var artist = req.body.artist
+    var token = req.body.token
+    console.log(token)
+    var auth = "Bearer ".concat(token)
+
+    const response = await axios.get("https://api.spotify.com/v1/search", {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': auth
+        },
+        params: {
+            q: artist,
+            type: 'artist'
+        }
+    })
+
+    try {
+        var artistID = response.data.artists.items[0].id;
+        var url = "https://api.spotify.com/v1/artists/".concat(artistID).concat("/top-tracks");
+
+        var artistTrakcs = await axios.get(url, {
+            headers: {
+                "Authorization": auth
+            },
+            params: {
+                limit: 3,
+                market: 'US'
+            }
+        })
+
+        try{
+            console.log(artistTrakcs.data.tracks)
+            res.json(artistTrakcs.data.tracks)
+        }catch(err){
+            console.log(err)
+        }
+
+    }catch(err){
+        console.log(err)
+    }
+
+})
 
 
 app.listen(PORT, () => console.log(`server running on PORT ${PORT}`))

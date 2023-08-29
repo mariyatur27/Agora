@@ -31,3 +31,32 @@ span#song-output {
     background: #fbfbc2;
     text-decoration: underline;
 }
+
+/* Styles for the results page */
+section#output{
+    padding: 2%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.track-box {
+    display: flex;
+    margin: 2%;
+    flex: 0 0 28%;
+}
+.img-cont {
+    width: 50%;
+}
+.img-cont img {
+    width: 87%;
+    border-radius: 22px;
+}
+.text-cont {
+    width: 50%;
+}
+.text-cont a {
+    color: black;
+    background: #ffffb2;
+}
+.text-cont h4 {
+    font-weight: 100;
+}

@@ -82,6 +82,32 @@ const suggestSong = (emotion) => {
         }
     }).catch(error => {
         console.error(error)
-    })
-        
+    })       
 }
+
+
+// Spotify functionality
+
+// Getting env data from backend and receiving a URL in return
+document.getElementById('spotify-auth-btn').addEventListener('click', function() {
+    fetch('/auth', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: ''
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json();
+    }).then(url => {
+        try {
+            window.location = url;
+        }catch(err){
+            console.log(err)
+        }
+    }).catch(error => {
+        console.error(error)
+    })   
+})
