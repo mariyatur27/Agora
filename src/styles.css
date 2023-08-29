@@ -15,3 +15,19 @@ textarea#text-extract {
     padding: 2%;
     border-radius: 20px;
 }
+button#search-on-spotify {
+    font-family: monospace;
+    font-weight: 500;
+    padding: 0.5% 2%;
+    border-radius: 10px;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+.hide{
+    display: none;
+}
+span#song-output {
+    font-weight: 100;
+    background: #fbfbc2;
+    text-decoration: underline;
+}

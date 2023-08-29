@@ -41,9 +41,9 @@ const processTextMood = (text) => {
             }
 
             var emotion = Object.keys(result)[greatest_ind];
-            console.log(emotion, score)
+            console.log(emotion)
 
-            identifyGenre(emotion, score)
+            suggestSong(emotion)
         }catch(err){
             console.log(err)
         }
@@ -53,7 +53,7 @@ const processTextMood = (text) => {
     })
 }
 
-const identifyGenre = (emotion) => {
+const suggestSong = (emotion) => {
     var data = {
         emotion: emotion
     }
@@ -65,4 +65,23 @@ const identifyGenre = (emotion) => {
         },
         body: JSON.stringify(data)
     })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json();
+    })
+    .then(result => {
+        try {
+            
+            document.getElementById('results').classList.toggle('hide');
+            document.getElementById('song-output').innerHTML = result;
+
+        }catch(err){
+            console.log(err)
+        }
+    }).catch(error => {
+        console.error(error)
+    })
+        
 }

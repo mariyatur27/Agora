@@ -1,9 +1,7 @@
 {
-    "Happy": [
-        
-    ],
-    "Angry": [],
-    "Suprise": [],
-    "Sad": [],
-    "Fear": []
+    "Happy": "happy, cheerful and joyful",
+    "Angry": "raging and angry",
+    "Suprise": "shoking, suprising and unexpected",
+    "Sad": "sad, melancholy and depressing",
+    "Fear": "frightening and scary"
 }
