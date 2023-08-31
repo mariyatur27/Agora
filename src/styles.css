@@ -41,14 +41,17 @@ section#output{
 .track-box {
     display: flex;
     margin: 2%;
-    flex: 0 0 28%;
+    flex: 0 0 45%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 22px;
 }
 .img-cont {
     width: 50%;
 }
 .img-cont img {
-    width: 87%;
-    border-radius: 22px;
+    width: 50%;
+    border-radius: 33px;
+    padding: 3%;
 }
 .text-cont {
     width: 50%;
@@ -60,7 +63,7 @@ section#output{
 .text-cont h4 {
     font-weight: 100;
 }
-.title h4 {
+#title h4 {
     font-size: xx-large;
     font-weight: 100;
 }
