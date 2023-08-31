@@ -40,10 +40,11 @@ section#output{
 }
 .track-box {
     display: flex;
-    margin: 2%;
-    flex: 0 0 45%;
+    margin: 1%;
+    flex: 0 0 44%;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 22px;
+    padding: 1%;
 }
 .img-cont {
     width: 50%;
@@ -71,7 +72,7 @@ span#output-artist{
     background: #ffffb2;
     font-style: italic;
 }
-button#regenerate-btn {
+button#regenerate-btn , button#spotify-auth-btn {
     font-family: monospace;
     margin-top: 1%;
     border-radius: 22px;
@@ -79,4 +80,37 @@ button#regenerate-btn {
     border: 1px solid grey;
     letter-spacing: 2px;
     cursor: pointer;
+}
+button#spotify-auth-btn {
+    margin-top: 0;
+    letter-spacing: 1px;
+}
+
+/* Mobile Phones */
+@media only screen and (max-width: 600px){
+    section#output{
+        display: block;
+    }
+    .track-box {
+        display: flex;
+        padding: 3%;
+    }
+    .img-cont {
+        width: 40%;
+    }
+    .text-cont {
+        width: 60%;
+    }
+    .img-cont img {
+        width: 75%;
+        border-radius: 17px;
+        padding: 0%;
+    }
+    .text-cont h2 {
+        font-size: medium;
+    }
+    .text-cont h4 {
+        margin-top: 0%;
+        font-size: smaller;
+    }
 }
