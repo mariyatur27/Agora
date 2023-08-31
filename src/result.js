@@ -1,3 +1,26 @@
+// getting the artist
+window.onload = () => {
+    fetch('/artist', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: ''
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json();
+    }).then(artist => {
+        
+        document.getElementById('output-artist').innerHTML = artist;
+        loadSpotify(artist);
+        
+    }).catch(error => {
+        console.error(error)
+    })  
+}
+
 
 const hash = window.location.hash
 let token = window.localStorage.getItem("token")
@@ -10,9 +33,9 @@ if (hash && hash) {
     console.log(token)
 }
 
-window.onload = () => {
+const loadSpotify = (artist) => {
     data = {
-        artist: "Elliot Smith",
+        artist: artist,
         token: token
     }
     fetch('/find', {

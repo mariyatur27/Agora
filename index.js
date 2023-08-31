@@ -50,6 +50,7 @@ app.post('/analyse', async(req, res) => {
     }
 })
 
+var suggestion;
 
 app.post('/data', (req, res) => {
 
@@ -63,7 +64,7 @@ app.post('/data', (req, res) => {
             var options = JSON.parse(jsonString)
             console.log(options[req.body.emotion])
 
-            var prompt = "Recommend a ".concat(options[req.body.emotion]).concat(" song that can be found on Spotify. Only output the song name.");
+            var prompt = "Recommend a ".concat(options[req.body.emotion]).concat(" music artist that can be found on spotify. Only type the name of the music artist below.");
 
             (async () => {
                 const response = await cohere.generate({
@@ -77,7 +78,8 @@ app.post('/data', (req, res) => {
                 });
     
                 try {
-                    const suggestion = response.body.generations[0].text
+                    // const suggestion = response.body.generations[0].text
+                    suggestion = response.body.generations[0].text
                     console.log(suggestion)
                     res.json(suggestion)
                 }catch(err){
@@ -91,6 +93,13 @@ app.post('/data', (req, res) => {
     })
 })
 
+app.post('/artist', (req, res) => {
+    try {
+        res.json(suggestion)
+    }catch(err){
+        console.log(err)
+    }
+})
 
 app.post('/auth', (req, res) => {
     try {

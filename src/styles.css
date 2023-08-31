@@ -60,3 +60,11 @@ section#output{
 .text-cont h4 {
     font-weight: 100;
 }
+.title h4 {
+    font-size: xx-large;
+    font-weight: 100;
+}
+span#output-artist{
+    background: #ffffb2;
+    font-style: italic;
+}
