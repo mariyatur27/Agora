@@ -15,7 +15,7 @@ window.onload = () => {
         
         document.getElementById('output-artist').innerHTML = artist;
         loadSpotify(artist);
-        
+
     }).catch(error => {
         console.error(error)
     })  
@@ -30,7 +30,6 @@ if (hash && hash) {
     token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
     window.location.hush = "";
     window.localStorage.setItem("token", token)
-    console.log(token)
 }
 
 const loadSpotify = (artist) => {
@@ -60,12 +59,17 @@ const loadSpotify = (artist) => {
     })   
 }
 
+var audioUrls = [];
+
 // Formatting the recommended tracks in HTML
 const formatOutput = (tracks) => {
     let container = document.getElementById('output');
 
     for(track of tracks){
+        audioUrls.push(track.preview_url)
+
         let track_box = document.createElement('div'); track_box.id = track.id; track_box.classList.add('track-box');
+        track_box.setAttribute('mp3', track.preview_url)
 
             let img_cont = document.createElement('div'); img_cont.classList.add('img-cont');
                 let img = document.createElement('img'); img.src = track.album.images[0].url;
@@ -85,5 +89,42 @@ const formatOutput = (tracks) => {
             track_box.appendChild(text_cont);
 
         container.appendChild(track_box);
+
+        setUpTracks(track.preview_url, track.id);
     }
+}
+
+// clicking on the boxes to play audio tracks
+const setUpTracks = (track, id) => {
+    document.getElementById(id).addEventListener('click', () => {
+        playSnippet(track)
+    })
+}
+
+const playSnippet = async(url) => {
+
+    const audio_array = audioUrls.map(n => new Audio(n));
+    console.log(audio_array)
+
+    try{
+
+        for(const audio of audio_array){
+            await audio.pause();
+            activateSnippet(url);
+            // audio.currentTime = 0;
+        }
+
+        // let active_audio = new Audio(url);
+        // await active_audio.play();
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+const activateSnippet = async(url) => {
+
+    let active_audio = new Audio(url);
+    await active_audio.play();
+
 }

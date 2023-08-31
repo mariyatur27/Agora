@@ -41,8 +41,6 @@ app.post('/analyse', async(req, res) => {
         })
 
         const result = response.data;
-        console.log(result)
-
         res.json(result)
 
     }catch(err){
@@ -62,7 +60,6 @@ app.post('/data', (req, res) => {
         try{
 
             var options = JSON.parse(jsonString)
-            console.log(options[req.body.emotion])
 
             var prompt = "Recommend a ".concat(options[req.body.emotion]).concat(" music artist that can be found on spotify. Only type the name of the music artist below.");
 
@@ -78,9 +75,7 @@ app.post('/data', (req, res) => {
                 });
     
                 try {
-                    // const suggestion = response.body.generations[0].text
                     suggestion = response.body.generations[0].text
-                    console.log(suggestion)
                     res.json(suggestion)
                 }catch(err){
                     console.log(err)
@@ -104,7 +99,6 @@ app.post('/artist', (req, res) => {
 app.post('/auth', (req, res) => {
     try {
         var url = process.env.REACT_APP_AUTHORIZE_URL.concat('?client_id=').concat(process.env.REACT_APP_CLIENT_ID).concat('&redirect_uri=').concat(process.env.REACT_APP_REDIRECT_URL).concat('&response_type=token&show_dialog=true');
-        console.log(url);
         res.json(url)
     }catch(err){
         console.log(err)
@@ -115,7 +109,6 @@ app.post('/find', async(req, res) => {
 
     var artist = req.body.artist
     var token = req.body.token
-    console.log(token)
     var auth = "Bearer ".concat(token)
 
     const response = await axios.get("https://api.spotify.com/v1/search", {
@@ -144,7 +137,6 @@ app.post('/find', async(req, res) => {
         })
 
         try{
-            console.log(artistTrakcs.data.tracks)
             res.json(artistTrakcs.data.tracks)
         }catch(err){
             console.log(err)
