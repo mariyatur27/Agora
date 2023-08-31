@@ -1,6 +1,8 @@
 document.getElementById('text-extract').addEventListener('keydown', function(e) {
     if(e.keyCode === 13 || e.key === 'Enter'){
 
+        document.getElementById('text-extract').disabled = true;
+
         var text = document.getElementById('text-extract').value;
         if (text != ''){
             processTextMood(text);
@@ -74,8 +76,14 @@ const suggestSong = (emotion) => {
     .then(result => {
         try {
             
-            document.getElementById('results').classList.toggle('hide');
+            if (document.getElementById('results').classList.contains('hide')){
+                document.getElementById('results').classList.remove('hide');
+            }
             document.getElementById('song-output').innerHTML = result;
+
+            if (document.getElementById('regenerate-btn').classList.contains('hide')) {
+                document.getElementById('regenerate-btn').classList.remove('hide');
+            }
 
         }catch(err){
             console.log(err)
@@ -110,4 +118,16 @@ document.getElementById('spotify-auth-btn').addEventListener('click', function()
     }).catch(error => {
         console.error(error)
     })   
+})
+
+
+// regenerate button
+
+document.getElementById('regenerate-btn').addEventListener('click', function() {
+    var text = document.getElementById('text-extract').value;
+    if (text != ''){
+        processTextMood(text);
+    }else{
+        alert("Please type something before clicking 'Enter' !")
+    }
 })

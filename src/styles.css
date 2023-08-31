@@ -71,3 +71,12 @@ span#output-artist{
     background: #ffffb2;
     font-style: italic;
 }
+button#regenerate-btn {
+    font-family: monospace;
+    margin-top: 1%;
+    border-radius: 22px;
+    padding: 0.5% 2%;
+    border: 1px solid grey;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
