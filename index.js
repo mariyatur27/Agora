@@ -61,7 +61,7 @@ app.post('/data', (req, res) => {
 
             var options = JSON.parse(jsonString)
 
-            var prompt = "Recommend a ".concat(options[req.body.emotion]).concat(" music artist that can be found on spotify. Only type the name of the music artist below.");
+            var prompt = "Recommend a ".concat(options[req.body.emotion]).concat(" music artist that can be found on spotify. Only type the name of the music artist below and nothing else.");
 
             (async () => {
                 const response = await cohere.generate({

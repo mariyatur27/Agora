@@ -95,36 +95,36 @@ const formatOutput = (tracks) => {
 }
 
 // clicking on the boxes to play audio tracks
-const setUpTracks = (track, id) => {
-    document.getElementById(id).addEventListener('click', () => {
-        playSnippet(track)
-    })
-}
+// const setUpTracks = (track, id) => {
+//     document.getElementById(id).addEventListener('click', () => {
+//         playSnippet(track)
+//     })
+// }
 
-const playSnippet = async(url) => {
+// const playSnippet = async(url) => {
 
-    const audio_array = audioUrls.map(n => new Audio(n));
-    console.log(audio_array)
+//     const audio_array = audioUrls.map(n => new Audio(n));
+//     console.log(audio_array)
 
-    try{
+//     try{
 
-        for(const audio of audio_array){
-            await audio.pause();
-            activateSnippet(url);
-            // audio.currentTime = 0;
-        }
+//         for(const audio of audio_array){
+//             await audio.pause();
+//             activateSnippet(url);
+//             // audio.currentTime = 0;
+//         }
 
-        // let active_audio = new Audio(url);
-        // await active_audio.play();
+//         // let active_audio = new Audio(url);
+//         // await active_audio.play();
 
-    }catch(err){
-        console.log(err)
-    }
-}
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
 
-const activateSnippet = async(url) => {
+// const activateSnippet = async(url) => {
 
-    let active_audio = new Audio(url);
-    await active_audio.play();
+//     let active_audio = new Audio(url);
+//     await active_audio.play();
 
-}
+// }
